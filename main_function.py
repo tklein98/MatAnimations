@@ -59,3 +59,5 @@ def anim2(frame_number):
 animation = FuncAnimation(fig, master, interval=100)
 
 plt.show()
+
+#test
