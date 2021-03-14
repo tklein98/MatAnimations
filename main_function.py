@@ -60,7 +60,7 @@ def master(frame_number):
     if timestamps[0] < COUNT < timestamps[1]:
         # Create array once for animation
         arr = return_grid(n_drops)
-        input_text = ['MARIE', 'I', 'LOVE', 'YOU', 'ICH', 'WILL', 'WIEDER', 'ANS', 'MEER']
+        input_text = ['ICH', 'WILL', 'WIEDER', 'ANS', 'MEER']
         anim2(frame_number, rain_drops, n_drops=450, scat=scat, arr=arr, input_array=input_text, pause=0.5)
 
 # Construct the animation, using the update function as the animation director.
