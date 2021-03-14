@@ -38,15 +38,15 @@ rain_drops['growth'] = np.random.uniform(50, 200, n_drops)
 
 # Construct the scatter which we will update during animation
 # as the raindrops develop.
-linewidth = 3
+linewidth = 5
 scat = ax.scatter(rain_drops['position'][:, 0], rain_drops['position'][:, 1],
                   s=rain_drops['size'], lw=linewidth, edgecolors=rain_drops['frame'],
-                  facecolors=(0.9, 0, 0.9, 0.9))
+                  facecolors=(0.9, 0, 0.9, 0.9), marker='s')
 
 # This is the master function controlling when to switch from one animation
 # to another
 def master(frame_number):
-    timestamps = [10,100]
+    timestamps = [400,1000]
 
     global n_drops
     global COUNT
@@ -54,16 +54,15 @@ def master(frame_number):
     # Define how long every animation should last
 
     if COUNT <= timestamps[0]:
-        linewidth = 10
-        anim1(frame_number, rain_drops, n_drops=3, scat=scat)
+        anim1(frame_number, rain_drops, n_drops=30, scat=scat)
         COUNT += 1
     if timestamps[0] < COUNT < timestamps[1]:
         # Create array once for animation
         arr = return_grid(n_drops)
-        input_text = ['ICH', 'WILL', 'WIEDER', 'ANS', 'MEER']
-        anim2(frame_number, rain_drops, n_drops=450, scat=scat, arr=arr, input_array=input_text, pause=0.5)
+        input_text = ['ICH', 'WILL', 'WIEDER', 'ANS', 'MEER', 'SOMMER', 'LIFECHANGING']
+        anim2(frame_number, rain_drops, n_drops=450, scat=scat, arr=arr, input_array=input_text, pause=0.4)
 
 # Construct the animation, using the update function as the animation director.
-animation = FuncAnimation(fig, master, interval=100)
+animation = FuncAnimation(fig, master, interval=50)
 plt.show()
 
