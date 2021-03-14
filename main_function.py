@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 from animations.anim1 import anim1
 from animations.anim1 import anim2
+from support_modules.grid import return_grid
 
 # plt.rcParams['axes.facecolor'] = 'black'
 
@@ -23,7 +24,7 @@ ax.set_ylim(0, 1), ax.set_yticks([])
 fig.set_facecolor((0, 0, 0))
 
 # Create rain data
-n_drops = 500
+n_drops = 450
 rain_drops = np.zeros(n_drops, dtype=[('position', float, 2),
                                       ('size',     float, 1),
                                       ('growth',   float, 1),
@@ -57,8 +58,11 @@ def master(frame_number):
         anim1(frame_number, rain_drops, n_drops=3, scat=scat)
         COUNT += 1
     if timestamps[0] < COUNT < timestamps[1]:
+        # Create array once for animation
+        arr = return_grid(n_drops)
+
         linewidth = 10
-        anim2(frame_number, rain_drops, n_drops=500, scat=scat)
+        anim2(frame_number, rain_drops, n_drops=450, scat=scat, arr=arr)
 
 # Construct the animation, using the update function as the animation director.
 animation = FuncAnimation(fig, master, interval=100)
