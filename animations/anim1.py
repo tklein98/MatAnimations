@@ -1,6 +1,7 @@
 import numpy as np
 import time
 import pandas as pd
+import random
 
 starting_points = pd.read_csv('data/starting_points.csv')
 capital_letters = pd.read_csv('data/capital_letters.csv')
@@ -9,8 +10,10 @@ capital_letters_len = capital_letters.count()
 def anim1(frame_number, rain_drops, n_drops, scat):
     rain_drops = rain_drops
     n_drops = n_drops
+    linewidth = 4000
     scat = scat
     current_index = frame_number % n_drops
+
 
     # Updating size
     rain_drops['size'][current_index] = np.random.uniform(5, 30, 1) * \
@@ -22,18 +25,21 @@ def anim1(frame_number, rain_drops, n_drops, scat):
     #Updating fill
     rain_drops['fill'][current_index] = (np.random.uniform(0.2, 1),
                                          np.random.uniform(0.6, 1),
-                                         np.random.uniform(0, 0.4),
+                                         np.random.uniform(0, 0.9),
                                          1)
     # Updating frame
-    rain_drops['frame'][current_index] = (np.random.uniform(0.2, 1),
-                                          np.random.uniform(0.6, 1),
-                                          np.random.uniform(0, 0.4),
+    rain_drops['frame'][current_index] = (np.random.uniform(0.8, 1),
+                                          np.random.uniform(0.0, 0.1),
+                                          np.random.uniform(0, 0.1),
                                           1)
 
-    rain_drops['frame'][:, 3] -= 1.0/len(rain_drops)
+    rain_drops['size'] += 300
+
+    rain_drops['frame'][:, 3] -= 1.0/n_drops
     rain_drops['frame'][:, 3] = np.clip(rain_drops['frame'][:, 3], 0, 1)
 
-    rain_drops['fill'][:, 3] -= 1.0/len(rain_drops)
+
+    rain_drops['fill'][:, 3] -= 1.0/n_drops
     rain_drops['fill'][:, 3] = np.clip(rain_drops['fill'][:, 3], 0, 1)
 
     scat.set_edgecolors(rain_drops['frame'])
@@ -61,17 +67,23 @@ def anim2(frame_number, rain_drops, n_drops, scat, arr, input_array, pause=1):
     index_array = current_index % len(input_array)
     input_word = input_array[index_array]
 
+    if current_index%50 == 0:
+        rain_drops['fill'][:, 0] = 1
+        rain_drops['fill'][:, 1] = 1
+        rain_drops['fill'][:, 2] = 1
+        rain_drops['fill'][:, 3] = 1
+
     # Setting grid positions
     rain_drops['position'] = arr
 
     # setting frame color
-    rain_drops['frame'][:, 0] = 0.5
-    rain_drops['frame'][:, 1] = 0.5
-    rain_drops['frame'][:, 2] = 0.5
-    rain_drops['frame'][:, 3] = 1
+    rain_drops['frame'][:, 0] = 0.1
+    rain_drops['frame'][:, 1] = 0.1
+    rain_drops['frame'][:, 2] = 0.1
+    rain_drops['frame'][:, 3] = 0.2
 
     # Size of raindrops in grid
-    rain_drops['size'][:] = 500
+    rain_drops['size'][:] = 900
 
     # Retrieving the list of starting points (bottom left corner of input word)
     word_points = starting_points[f'{len(input_word)}']
