@@ -28,9 +28,9 @@ def anim1(frame_number, rain_drops, n_drops, scat):
                                          np.random.uniform(0, 0.9),
                                          1)
     # Updating frame
-    rain_drops['frame'][current_index] = (np.random.uniform(0.2, 1),
-                                          np.random.uniform(0.6, 1),
-                                          np.random.uniform(0, 0.9),
+    rain_drops['frame'][current_index] = (np.random.uniform(0.8, 1),
+                                          np.random.uniform(0.0, 0.1),
+                                          np.random.uniform(0, 0.1),
                                           1)
 
     rain_drops['size'] += 300
