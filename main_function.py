@@ -48,7 +48,7 @@ scat = ax.scatter(rain_drops['position'][:, 0], rain_drops['position'][:, 1],
 # This is the master function controlling when to switch from one animation
 # to another
 def master(frame_number):
-    timestamps = [50,1000]
+    timestamps = [400,1000]
 
     global n_drops
     global COUNT
