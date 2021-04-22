@@ -83,7 +83,7 @@ def anim2(frame_number, rain_drops, n_drops, scat, arr, input_array, pause=1):
     rain_drops['frame'][:, 3] = 0.2
 
     # Size of raindrops in grid
-    rain_drops['size'][:] = 900
+    rain_drops['size'][:] = 1400
 
     # Retrieving the list of starting points (bottom left corner of input word)
     word_points = starting_points[f'{len(input_word)}']
