@@ -2,6 +2,7 @@ import numpy as np
 import time
 import pandas as pd
 import random
+import matplotlib.pyplot as plt
 
 starting_points = pd.read_csv('data/starting_points.csv')
 capital_letters = pd.read_csv('data/capital_letters.csv')
@@ -10,11 +11,9 @@ capital_letters_len = capital_letters.count()
 def anim1(frame_number, rain_drops, n_drops, scat):
     rain_drops = rain_drops
     n_drops = n_drops
-    linewidth = 4000
     scat = scat
     current_index = frame_number % n_drops
-
-
+    
     # Updating size
     rain_drops['size'][current_index] = np.random.uniform(5, 30, 1) * \
     current_index**1.2

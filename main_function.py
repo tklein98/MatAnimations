@@ -41,10 +41,10 @@ rain_drops['growth'] = np.random.uniform(50, 200, n_drops)
 
 # Construct the scatter which we will update during animation
 # as the raindrops develop.
-linewidth = 2
+linewidth = 1
 scat = ax.scatter(rain_drops['position'][:, 0], rain_drops['position'][:, 1],
                   s=rain_drops['size'], lw=linewidth, edgecolors=rain_drops['frame'],
-                  facecolors=(0.9, 0, 0.9, 0.9), marker='s')
+                  facecolors=(0.9, 0, 0.9, 0.9), marker='o')
 
 # This is the master function controlling when to switch from one animation
 # to another
