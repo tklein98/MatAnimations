@@ -74,6 +74,9 @@ rs = 1.0
 gs = 1.0
 bs = 0.0
 
+
+scat = ax.scatter(completex, completey, s= 500,color=colors, linewidths= 1, edgecolors= [0,0,0])
+
 def iterate(frame_number):
     # for shape in shapes:
         
@@ -87,15 +90,3 @@ def iterate(frame_number):
     if frame_number > 0:
         colors[shapes[frame_number-1]] = colors[shapes[frame_number-1]]/10
     scat.set_color(colors) 
-    
-def test(frame_number):
-    
-    
-plt.rcParams['axes.facecolor'] = 'black'
-# plt.scatter(completex, completey, s= 80,color=colors, linewidths= 1, edgecolors= [0,0,0])
-
-scat = ax.scatter(completex, completey, s= 500,color=colors, linewidths= 1, edgecolors= [0,0,0])
-
-animation = FuncAnimation(fig, iterate, interval=250,frames=30,repeat=True)
-
-plt.show()
